@@ -40,7 +40,7 @@ router.get("/", async (req, res) => {
     } else {
       if (await bcrypt.compare(user_pass, user.rows[0].user_pass))
         res.json({ status: "valid" });
-      else
+      else 
         res.json({ status: "invalid" });
     }
   } catch (err) {

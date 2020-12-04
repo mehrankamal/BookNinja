@@ -1,10 +1,12 @@
+const keys = require("./config/keys");
+
 const Pool = require("pg").Pool;
 
 const pool = new Pool({
-    user: "postgres",
-    password: "masterpass",
-    host: "bookninjadb.cdgsuhli9azb.us-east-1.rds.amazonaws.com",
-    port: 5432
+  user: keys.DB_USER,
+  password: keys.DB_PASS,
+  host: keys.DB_HOST,
+  port: keys.DB_PORT,
 });
 
 module.exports = pool;

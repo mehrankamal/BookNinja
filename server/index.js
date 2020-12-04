@@ -11,12 +11,11 @@ app.use(cors());
 app.use(express.json());
 
 //Routes
-app.use('/api/user', user);
+app.use("/api/user", user);
 
-app.get('/', (req, res) => {
-    res.send("Hello");
-})
-
+app.get("/", (req, res) => {
+  res.send("Hello");
+});
 
 const PORT = process.env.PORT || 3000;
 
