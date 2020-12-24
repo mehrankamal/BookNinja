@@ -48,12 +48,13 @@ CREATE TABLE Shelf_books(
 CREATE TABLE Users(
 	user_id SERIAL,
 	user_name VARCHAR(20),
-	user_pass CHAR(60) BINARY,
+	user_pass CHAR(60),
 	user_email VARCHAR(50),
 	join_date DATE NOT NULL DEFAULT CURRENT_DATE,
-	user_bio VARCHAR(200),
-	num_followers BIGINT,
-	num_following BIGINT,
+	user_bio VARCHAR(200) DEFAULT null,
+	num_followers BIGINT DEFAULT 0,
+	num_following BIGINT DEFAULT 0,
+	confirmed BOOLEAN DEFAULT FALSE,
 	
 	PRIMARY KEY (user_id),
 	UNIQUE (user_email)
@@ -73,7 +74,7 @@ CREATE TABLE Reviews(
 CREATE TABLE Orders(
 	order_id SERIAL,
 	user_id INTEGER,
-	seller_id VARCHAR(10),
+	seller_id INTEGER,
 	order_date DATE DEFAULT CURRENT_DATE,
 	ship_date DATE,
 	
@@ -91,23 +92,20 @@ CREATE TABLE Order_books(
 
 CREATE TABLE Seller_book(
 	book_isbn_10 VARCHAR(11),
-	seller_id VARCHAR(10),
-	qty_stock INT,
+	seller_id INTEGER,
+	qty_stock INTEGER,
 	price_Quoted MONEY,
 
 	PRIMARY KEY(book_isbn_10, seller_id)
-
 );
 
-
 CREATE TABLE Sellers(
-	seller_id VARCHAR(10),
+	seller_id SERIAL,
 	seller_name VARCHAR(20),
-	seller_pass CHAR(60) BINARY,
+	seller_pass CHAR(60),
 	seller_email VARCHAR(50),
-	join_date DATE,
+	join_date DATE DEFAULT CURRENT_DATE,
 	seller_des VARCHAR(200),
-	num_followers BIGINT,
 	
 	PRIMARY KEY (seller_id),
 	UNIQUE (seller_email)
