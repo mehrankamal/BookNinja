@@ -1,3 +1,5 @@
+const server = 'http://localhost:3000/';
+
 function setFormMessage(formElement, type, message) {
     const messageElement = formElement.querySelector(".form__message");
 
@@ -44,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let email = document.querySelector('#login_email');
 
         var xhr = new  XMLHttpRequest();
-        xhr.open('POST', 'http://localhost:3000/api/user/signin', true);
+        xhr.open('POST', `${server}api/user/signin`, true);
         xhr.setRequestHeader("Content-Type", "application/json");
 
         xhr.onload = function() {
@@ -89,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
 
         var xhr = new  XMLHttpRequest();
-        xhr.open('POST', 'http://localhost:3000/api/user/signup', true);
+        xhr.open('POST', `${server}api/user/signup`, true);
         xhr.setRequestHeader("Content-Type", "application/json");
 
         xhr.onload = function() {
