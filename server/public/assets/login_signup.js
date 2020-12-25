@@ -16,6 +16,10 @@ function clearInputError(inputElement) {
     inputElement.parentElement.querySelector(".form__input-error-message").textContent = "";
 }
 
+function login_status(status) 
+{
+   return status === "valid" ? true : false ; 
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.querySelector("#login");
@@ -47,7 +51,18 @@ document.addEventListener("DOMContentLoaded", () => {
             if(this.status == 200)
             {
                 var users= JSON.parse(this.responseText);
-                console.log(users);
+                // console.log(users);
+                if(login_status(users.status))
+                {
+                    console.log(users);
+                }
+                else 
+                {
+                    console.log(users);
+                   let x = document.querySelector("#login_check");
+
+                    x.innerHTML = "Incorrect username or password";
+                }
             } 
         }
 
