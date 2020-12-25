@@ -45,12 +45,12 @@ router.post("/:user_id/add_shelf", require_auth, async (req, res) => {
 router.delete("/:user_id/delete_shelf/:shelf_id", require_auth, async (req, res) => {
     try {
         const {shelf_id, user_id} = req.params;
-        
+
         const deletedShelf = await pool.query("DELETE FROM user_shelf\
                                                WHERE shelf_id = $1 AND user_id = $2\
                                                RETURNING *",
                                                [shelf_id, user_id]);
-        res.redirect("/user/"+user_id);
+        res.redirect("/user/" + user_id);
     } catch (err) {
         console.log("Error: " + err);
     }
