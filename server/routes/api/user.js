@@ -50,7 +50,7 @@ router.delete("/:user_id/delete_shelf/:shelf_id", require_auth, async (req, res)
                                                WHERE shelf_id = $1 AND user_id = $2\
                                                RETURNING *",
                                                [shelf_id, user_id]);
-        res.redirect("/user/:user_id");
+        res.redirect("/user/"+user_id);
     } catch (err) {
         console.log("Error: " + err);
     }
