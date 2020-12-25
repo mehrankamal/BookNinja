@@ -97,8 +97,18 @@ document.addEventListener("DOMContentLoaded", () => {
         xhr.onload = function() {
             if(this.status == 200)
             {
-                var users= JSON.parse(this.responseText);
-                console.log(users);
+                var user= JSON.parse(this.responseText);
+                console.log("sadsd");
+                console.log(user);
+                if(user.status!== "success")
+                {
+                    alert(user.status);
+                    email.value = "";
+                    return;
+                }
+                else{
+                    //redirect to home page with user name on top of navbar
+                }
             } 
         }
 
