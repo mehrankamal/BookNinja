@@ -120,8 +120,8 @@ CREATE TABLE User_follows(
 
 
 ALTER TABLE user_shelf ADD FOREIGN KEY (user_id) REFERENCES users(user_id);
-ALTER TABLE shelf_books ADD FOREIGN KEY (shelf_id) REFERENCES user_shelf(shelf_id);
-ALTER TABLE shelf_books ADD FOREIGN KEY (book_isbn_10) REFERENCES books(book_isbn_10);
+ALTER TABLE shelf_books ADD FOREIGN KEY (shelf_id) REFERENCES user_shelf(shelf_id) ON DELETE CASCADE;
+ALTER TABLE shelf_books ADD FOREIGN KEY (book_isbn_10) REFERENCES books(book_isbn_10) ON DELETE CASCADE;
 ALTER TABLE reviews ADD FOREIGN KEY (user_id) REFERENCES users(user_id);
 ALTER TABLE reviews ADD FOREIGN KEY (book_isbn_10) REFERENCES books(book_isbn_10);
 ALTER TABLE book_authored ADD FOREIGN KEY (book_isbn_10) REFERENCES books(book_isbn_10);
