@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const pool = require("../../db");
 const {create_token} = require("../utils");
+const {require_auth} = require("../../middleware/jwtMiddleware");
 
 const router = express.Router();
 const saltRounds = 10;
@@ -15,7 +16,7 @@ const saltRounds = 10;
 // shelf_name: "Example shelf"
 //}
 
-router.post("/:user_id/add_shelf", async (req, res) => {
+router.post("/:user_id/add_shelf", require_auth, async (req, res) => {
     try {
         console.log(req.params);
         console.log(req.body);
@@ -41,7 +42,7 @@ router.post("/:user_id/add_shelf", async (req, res) => {
 // @desc    Delete a shelf related to a user
 // @access  private (user can delete only it's related shelves)
 
-router.delete("/:user_id/delete_shelf/:shelf_id", async (req, res) => {
+router.delete("/:user_id/delete_shelf/:shelf_id", require_auth, async (req, res) => {
     try {
         
     } catch (err) {
@@ -90,7 +91,7 @@ router.post("/signin", async (req, res) => {
             res.status(400).json({ status: "invalid" });
         } else {
             if (await bcrypt.compare(user_pass, user.rows[0].user_pass)) {
-                const token = create_token(user.rows[0].user_id)
+                const token = create_token(user.rows[0].user_id);
                 res.cookie("jwt", token, {httpOnly: true, maxAge: 1000 * 1 * 60 * 60 * 24});
                 res.status(200).json({ status: "valid", user_id: user.rows[0].user_id });
             } else res.json({ status: "invalid" });
