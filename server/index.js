@@ -42,15 +42,17 @@ app.get("/user/:user_email", async (req, res) => {
     // console.log(user);
 
     const user_id = user.rows[0].user_id;
+    const num_followers = user.rows[0].num_followers;
+    const num_following = user.rows[0].num_following;
 
-    const num_followers = await pool.query("SELECT COUNT(*) AS num_followers\
-                                            FROM user_follows\
-                                            WHERE user_id = $1",
-                                            [user_id]);
-    const num_following = await pool.query("SELECT COUNT(*) AS num_following\
-                                            FROM user_follows\
-                                            WHERE following_id = $1",
-                                            [user_id]);
+    // const num_followers = await pool.query("SELECT COUNT(*) AS num_followers\
+    //                                         FROM user_follows\
+    //                                         WHERE user_id = $1",
+    //                                         [user_id]);
+    // const num_following = await pool.query("SELECT COUNT(*) AS num_following\
+    //                                         FROM user_follows\
+    //                                         WHERE following_id = $1",
+    //                                         [user_id]);
 
     const shelves = await pool.query("SELECT shelf_id, shelf_name\
                                       FROM user_shelf\
@@ -63,11 +65,11 @@ app.get("/user/:user_email", async (req, res) => {
         user_bio: user.rows[0].user_bio,
         user_email: user.rows[0].user_email,
         user_id: user.rows[0].user_id,
-        num_followers: num_followers.rows[0].num_followers,
-        num_following: num_followers.rows[0].num_following,
+        num_followers: num_followers,
+        num_following: num_following,
       },
       shelves:
-        [shelves.rows]
+        shelves.rows
     };
     
     console.log(user_details);

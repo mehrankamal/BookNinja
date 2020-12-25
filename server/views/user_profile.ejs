@@ -63,15 +63,15 @@
         <div class="text-center">
 
             <!-- Placeholder image using Placeholder.com -->
-            <img src="http://via.placeholder.com/300x250" class="img-rounded"/>
+            <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png" class="img-rounded"/>
 
             <!-- Header text (Person's name) -->
-            <h2><%=user_name%></h2>
+            <h2><%=user_details.user.user_name%></h2>
 
             <!-- Social buttons using anchor elements and btn-primary class to style -->
             <p>
-              <a class="btn btn-primary btn-xs" href="#" role="button">Followers:<br> </a>
-              <a class="btn btn-primary btn-xs" href="#" role="button">Following:<br> </a>
+              <a class="btn btn-primary btn-xs" href="#" role="button">Followers<br><%=user_details.user.num_followers%></a>
+              <a class="btn btn-primary btn-xs" href="#" role="button">Following<br><%=user_details.user.num_following%></a>
             </p>
 
         </div>
@@ -82,7 +82,7 @@
     <div class="col-md-8 col-sm-* col-xs-*">
 
       <!-- "Lead" text at top of column. -->
-      <p class="lead">Bio: </p>
+      <p class="lead">Bio </p>
 
       <!-- Horizontal rule to add some spacing between the "lead" and body text -->
       <hr />
@@ -90,30 +90,83 @@
       <!-- Body text (paragraph 2) -->
 
       <p>
-      Aenean hendrerit augue id venenatis mollis. Nunc euismod lorem id interdum tempor. Maecenas euismod euismod arcu blandit rhoncus. Aliquam mattis ornare enim, id molestie nibh dapibus eget. Donec accumsan libero ac ante lobortis, at porttitor neque pretium. Phasellus quis nibh dolor. In nunc mi, cursus quis nunc sit amet, blandit pulvinar nisi. Aenean vel egestas nisl, eu bibendum enim. Mauris ut turpis vel lacus sollicitudin ultrices eu sit amet sapien. Fusce facilisis tempus ligula, et laoreet ligula fringilla eget.
+        <%=user_details.user.user_bio%>
       </p>
+    <br>
+    <br>
 
-      <h3>Shelf List:</h3>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Read</h5>
-              <p class="card-text"></p>
-              <a href="#" class="btn btn-primary">Go to shelf</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Want-to-read</h5>
-              <p class="card-text"></p>
-              <a href="#" class="btn btn-primary">Go to shelf</a>
-            </div>
-          </div>
-        </div>
+      <h3>Shelf List</h3>
+
+<!-- Scrollable modal -->
+<button type="button" class="btn btn-primary btn-add-shelf" >
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+    <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+  </svg> Add Shelf
+</button>
+<br><br>
+
+<!-- yolo-->
+<div class="modal fade show" id="popup_for_adding" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" style="display: none; padding-right: 17px;" aria-modal="true" role="dialog">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">Add Shelf</h5>
+        <button type="button" class="btn btn-secondary close_popup" data-bs-dismiss="modal" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+          </svg>
+      </button>
       </div>
+      <div class="modal-body">
+        
+        
+        <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Enter Shelf Name:</label>
+            <input type="text" class="form-control" id="exampleInputEmail1">
+            <!-- <div id="emailHelp" class="form-text"></div> -->
+          </div>  
+          <!-- <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+          </div> -->
+          <!-- <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div> -->
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-secondary close_popup">Close</button>
+        </form>
+
+
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary close_popup" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+<!--yolo end-->
+
+
+      <% for(var i=0; i < user_details.shelves.length; i++) { %>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title"><%=user_details.shelves[i].shelf_name%></h5>
+                <p class="card-text"></p>
+                <a href="#" class="btn btn-primary">Go to shelf</a>
+              </div>
+            </div>
+          </div>
+        </div>
+     <% } %>
+
+      
+      
 
 
     </div> <!-- End column 2 -->
