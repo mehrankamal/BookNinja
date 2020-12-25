@@ -17,6 +17,8 @@ const saltRounds = 10;
 
 router.post("/:user_id/add_shelf", async (req, res) => {
     try {
+        console.log(req.params);
+        console.log(req.body);
         const {user_id} = req.params;
         const {shelf_name} = req.body;
 
