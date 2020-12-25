@@ -43,4 +43,13 @@ router.get("/:user_id", require_auth, async (req, res) => {
     }
 });
 
+// @route GET user/logout/
+// @desc Logout the user
+// @access logged-in user
+
+router.get("/logout", require_auth, (req, res) => {
+    res.cookie('jwt', '', {maxAge: 1});
+    res.redirect("/");
+});
+
 module.exports = router;
