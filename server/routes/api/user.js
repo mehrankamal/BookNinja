@@ -1,6 +1,8 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const pool = require("../../db");
+const {create_token} = require("../utils");
+const {require_auth} = require("../../middleware/jwtMiddleware");
 
 const router = express.Router();
 const saltRounds = 10;
@@ -14,7 +16,7 @@ const saltRounds = 10;
 // shelf_name: "Example shelf"
 //}
 
-router.post("/:user_id/add_shelf", async (req, res) => {
+router.post("/:user_id/add_shelf", require_auth, async (req, res) => {
     try {
         console.log(req.params);
         console.log(req.body);
@@ -36,26 +38,45 @@ router.post("/:user_id/add_shelf", async (req, res) => {
     }
 });
 
+// @route   DELETE api/user/:user_id/delete_shelf/:shelf_id
+// @desc    Delete a shelf related to a user
+// @access  private (user can delete only it's related shelves)
+
+router.delete("/:user_id/delete_shelf/:shelf_id", require_auth, async (req, res) => {
+    try {
+        const {shelf_id, user_id} = req.params;
+        
+        const deletedShelf = await pool.query("DELETE FROM user_shelf\
+                                               WHERE shelf_id = $1 AND user_id = $2\
+                                               RETURNING *",
+                                               [shelf_id, user_id]);
+        res.redirect("/user/:user_id");
+    } catch (err) {
+        console.log("Error: " + err);
+    }
+});
+
 // @route   POST api/user/signup
 // @desc    Signup user
 // @access  public
 
 router.post("/signup", async (req, res) => {
     try {
-        console.log(req.body);
         const { user_name, user_pass, user_email } = req.body;
-        console.log(user_name, user_pass, user_email);
         const pass_hash = await bcrypt.hash(user_pass, saltRounds);
         const newUser = await pool.query(
             "INSERT INTO users (user_name, user_pass, user_email) \
              VALUES ($1, $2, $3) RETURNING user_id",
             [user_name, pass_hash, user_email]
         );
-        res.json({ status: "success", user_id: newUser.rows[0].user_id });
+        const token = create_token(newUser.rows[0].user_id);
+
+        res.status(200).json({ status: "success", user_id: newUser.rows[0].user_id });
     } catch (err) {
         if (err.constraint === "users_user_email_key")
-            res.json({ status: "user already exists" });
+            res.status(400).json({ status: "user already exists" });
         else console.log("Error: " + err);
+            res.json({err});
     }
 });
 
@@ -73,10 +94,12 @@ router.post("/signin", async (req, res) => {
         );
 
         if (user.rowCount === 0) {
-            res.json({ status: "invalid" });
+            res.status(400).json({ status: "invalid" });
         } else {
             if (await bcrypt.compare(user_pass, user.rows[0].user_pass)) {
-                res.json({ status: "valid", user_id: user.rows[0].user_id });
+                const token = create_token(user.rows[0].user_id);
+                res.cookie("jwt", token, {httpOnly: true, maxAge: 1000 * 1 * 60 * 60 * 24});
+                res.status(200).json({ status: "valid", user_id: user.rows[0].user_id });
             } else res.json({ status: "invalid" });
         }
     } catch (err) {

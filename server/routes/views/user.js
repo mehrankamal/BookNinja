@@ -1,6 +1,7 @@
 const express = require("express");
 const ejs = require("ejs");
 const pool = require("../../db");
+const { require_auth } = require("../../middleware/jwtMiddleware");
 
 const router = express.Router();
 
@@ -8,33 +9,19 @@ const router = express.Router();
 // @desc Send the user profile view
 // @access logged-in user
 
-router.get("/:user_id", async (req, res) => {
+router.get("/:user_id", require_auth, async (req, res) => {
     try {
         const { user_id } = req.params;
-        console.log(user_id);
 
         const user = await pool.query(
             "SELECT * FROM users WHERE user_id = $1",
             [user_id]
         );
 
-        // const num_followers = await pool.query(
-        //     "SELECT COUNT(*) AS num_followers\
-        //                                     FROM user_follows\
-        //                                     WHERE user_id = $1",
-        //     [user_id]
-        // );
-        // const num_following = await pool.query(
-        //     "SELECT COUNT(*) AS num_following\
-        //                                     FROM user_follows\
-        //                                     WHERE following_id = $1",
-        //     [user_id]
-        // );
-
         const shelves = await pool.query(
             "SELECT shelf_id, shelf_name\
-                                      FROM user_shelf\
-                                      WHERE user_id = $1",
+            FROM user_shelf\
+            WHERE user_id = $1",
             [user_id]
         );
 
@@ -50,12 +37,19 @@ router.get("/:user_id", async (req, res) => {
             shelves: shelves.rows,
         };
 
-        console.log(user_details);
-
         res.render("user_profile", { user_details });
     } catch (err) {
         console.log(err.message);
     }
+});
+
+// @route GET user/logout/
+// @desc Logout the user
+// @access logged-in user
+
+router.get("/logout", require_auth, (req, res) => {
+    res.cookie('jwt', '', {maxAge: 1});
+    res.redirect("/");
 });
 
 module.exports = router;
