@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Account Page</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/public/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/public/assets/css/blog-post.css" rel="stylesheet">
+  <link rel="stylesheet" href="/public/assets/user_profile_styles.css" type="text/css">
+
+
+</head>
+
+<body>
+
+   <!-- Navigation -->
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="F:\startbootstrap-shop-homepage-gh-pages\index.html">Book Ninja</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <!-- <span class="sr-only">(current)</span> -->
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sign up / Log in</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  
+
+<!-- Page Content -->
+<div class="container-fluid">
+
+  <!--First row (only row)-->
+  <div class="row extra_margin">
+
+    <!-- First column (smaller of the two). Will appear on the left on desktop and on the top on mobile. -->
+    <div class="col-md-4 col-sm-12 col-xs-12">
+
+        <!-- Div to center the header image/name/social buttons -->
+        <div class="text-center">
+
+            <!-- Placeholder image using Placeholder.com -->
+            <img src="http://via.placeholder.com/300x250" class="img-rounded"/>
+
+            <!-- Header text (Person's name) -->
+            <h2><%=user_name%></h2>
+
+            <!-- Social buttons using anchor elements and btn-primary class to style -->
+            <p>
+              <a class="btn btn-primary btn-xs" href="#" role="button">Followers:<br> </a>
+              <a class="btn btn-primary btn-xs" href="#" role="button">Following:<br> </a>
+            </p>
+
+        </div>
+
+    </div> <!-- End Col 1 -->
+
+    <!-- Second column - for small and extra-small screens, will use whatever # cols is available -->
+    <div class="col-md-8 col-sm-* col-xs-*">
+
+      <!-- "Lead" text at top of column. -->
+      <p class="lead">Bio: </p>
+
+      <!-- Horizontal rule to add some spacing between the "lead" and body text -->
+      <hr />
+
+      <!-- Body text (paragraph 2) -->
+
+      <p>
+      Aenean hendrerit augue id venenatis mollis. Nunc euismod lorem id interdum tempor. Maecenas euismod euismod arcu blandit rhoncus. Aliquam mattis ornare enim, id molestie nibh dapibus eget. Donec accumsan libero ac ante lobortis, at porttitor neque pretium. Phasellus quis nibh dolor. In nunc mi, cursus quis nunc sit amet, blandit pulvinar nisi. Aenean vel egestas nisl, eu bibendum enim. Mauris ut turpis vel lacus sollicitudin ultrices eu sit amet sapien. Fusce facilisis tempus ligula, et laoreet ligula fringilla eget.
+      </p>
+
+      <h3>Shelf List:</h3>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Read</h5>
+              <p class="card-text"></p>
+              <a href="#" class="btn btn-primary">Go to shelf</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Want-to-read</h5>
+              <p class="card-text"></p>
+              <a href="#" class="btn btn-primary">Go to shelf</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div> <!-- End column 2 -->
+
+  </div> <!-- End row 1 -->
+
+</div> <!-- End main container -->
+
+
+
+  <!-- /.container -->
+
+  <!-- Footer -->
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  <!-- change this later 
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  -->
+  <script type="text/javascript" src="/public/assets/user_profile_script.js"> </script>
+
+</body>
+
+</html>
