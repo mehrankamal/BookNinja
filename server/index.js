@@ -1,33 +1,33 @@
 const express = require("express");
 const cors = require("cors");
-const fs = require("fs");
+const cookerParser = require("cookie-parser");
 
 const pool = require("./db");
-const user = require("./routes/api/user");
-// const login_view = require("./routes/view/login");
+const user_api_routes = require("./routes/api/user");
+const user_view_routes = require("./routes/views/user");
 
 const app = express();
 
 //Middlewares
 app.use(cors());
 app.use(express.json());
-// app.use(express.urlencoded);
 const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(
+    bodyParser.urlencoded({
+        extended: true,
+    })
+);
 app.use(bodyParser.json());
-app.set('view engine', 'ejs');
-app.use("/public", express.static('public'));
+app.set("view engine", "ejs");
+app.use("/public", express.static("public"));
+app.use(cookerParser());
 
-//Views
-// app.use("/login", )
+//API Routes
+app.use("/api/user", user_api_routes);
 
-//Routes
-app.use("/api/user", user);
-
-//Views
+//Views Routes
 app.get("/", (req, res) => {
+<<<<<<< HEAD
   res.render("login_signup");
 });
 
@@ -78,10 +78,14 @@ app.get("/user/:user_email", async (req, res) => {
   } catch (err) {
     console.log(err.message); 
   }
+=======
+    res.render("login_signup");
+>>>>>>> 15eda4ea0fcbb52cfbab1695fd8d053eded605c6
 });
+app.get("/user", user_view_routes);
 
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`Server has started on port ${PORT}`);
+    console.log(`Server has started on port ${PORT}`);
 });
