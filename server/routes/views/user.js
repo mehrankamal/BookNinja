@@ -46,7 +46,7 @@ router.get("/:user_id", async (req, res) => {
                 num_followers: num_followers.rows[0].num_followers,
                 num_following: num_followers.rows[0].num_following,
             },
-            shelves: [shelves.rows],
+            shelves: shelves.rows,
         };
 
         console.log(user_details);
