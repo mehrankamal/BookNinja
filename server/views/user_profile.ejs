@@ -89,7 +89,7 @@
 
         <!-- "Lead" text at top of column. -->
         <p style = "font-weight: bold; font-size: 1.75rem" class="lead">Bio
-          <a style="float: right" href="#" class="btn btn-dark" id="23">Edit</a>
+          <a style="float: right" href="#" class="btn btn-dark edit_bio" id=<%=user_details.user.user_id%>>Edit</a>
         </p>
 
         <!-- Horizontal rule to add some spacing between the "lead" and body text -->
@@ -97,9 +97,9 @@
 
         <!-- Body text (paragraph 2) -->
 
-        <p>
-          <%=user_details.user.user_bio%>
-        </p>
+        <div id="bio_feild">
+          <%=user_details.user.user_bio%></div>
+          
 
         <!-- Bcak-end values stored here  -->
         <p class="sr-only" id="user_id">
@@ -110,10 +110,7 @@
         </p>
 
 
-        <br><br><br><br><br>
-        <br>
-        <br>
-        <br>
+        
 
         <h3>Shelf List</h3>
 
@@ -176,6 +173,55 @@
         </div>
         
         <!-- pop_up add to shelf end-->
+
+
+
+        <!-- popup for adding to bio -->
+        <div class="modal fade show" id="popup_bio" tabindex="-1" aria-labelledby="exampleModalScrollableTitle"
+        style="display: none; padding-right: 17px;" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalScrollableTitle">Add Shelf</h5>
+              <button type="button" class="btn btn-secondary close_popup_bio" data-bs-dismiss="modal" aria-label="Close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                  <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+                </svg>
+              </button>
+            </div>
+            <div class="modal-body">
+
+
+              <form>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Enter Your New Bio:</label>
+                  <input type="text" class="form-control" id="new_bio">
+                  <!-- <div id="emailHelp" class="form-text"></div> -->
+                </div>
+                <!-- <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1">
+        </div> -->
+                <!-- <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div> -->
+                <button type="submit" class="btn btn-primary" id="submit_bio">Submit</button>
+                <button type="button" class="btn btn-secondary close_popup_bio">Close</button>
+              </form>
+
+
+            </div>
+            <!-- <div class="modal-footer">
+      <button type="button" class="btn btn-secondary close_popup" data-bs-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary">Save changes</button>
+    </div> -->
+          </div>
+        </div>
+      </div>
+
 
 
 
