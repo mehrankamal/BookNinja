@@ -32,16 +32,16 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="home_btn">Home
               <!-- <span class="sr-only">(current)</span> -->
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link active" href="#" id="about_btn" >profile</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Sign up / Log in</a>
+          <li class="nav-item" id="logout_btn">
+            <a class="nav-link" href="#">logout</a>
           </li>
         </ul>
       </div>
@@ -88,14 +88,16 @@
       <div class="col-md-8 col-sm-* col-xs-*">
 
         <!-- "Lead" text at top of column. -->
-        <p class="lead">Bio </p>
+        <p style = "font-weight: bold; font-size: 1.75rem" class="lead">Bio
+          <a style="float: right" href="#" class="btn btn-dark" id="23">Edit</a>
+        </p>
 
         <!-- Horizontal rule to add some spacing between the "lead" and body text -->
         <hr />
 
         <!-- Body text (paragraph 2) -->
 
-        <p id="gudu">
+        <p>
           <%=user_details.user.user_bio%>
         </p>
 
@@ -108,6 +110,8 @@
         </p>
 
 
+        <br><br><br><br><br>
+        <br>
         <br>
         <br>
 
@@ -243,10 +247,20 @@
 
 
   <!-- Bootstrap core JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-    crossorigin="anonymous"></script>
-  +
+    crossorigin="anonymous"></script> -->
+  
+  <!-- Bootstrap core JavaScript -->
+  <script src="/public/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="/public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="/public/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="/public/assets/scrolling-nav.js"></script>
+
+
+
   <!-- change this later 
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
