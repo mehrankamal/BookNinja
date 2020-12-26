@@ -53,10 +53,10 @@ document.addEventListener("DOMContentLoaded", () => {
             if(this.status == 200)
             {
                 var users= JSON.parse(this.responseText);
-                // console.log(users);
+                console.log(users);
                 if(login_status(users.status))
                 {
-                    console.log(users);
+                    window.location = `${server}user/${users.user_id}`
                 }
                 else 
                 {

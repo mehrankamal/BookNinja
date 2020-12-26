@@ -39,7 +39,7 @@ router.get("/:user_id", require_auth, async (req, res) => {
 
         res.render("user_profile", { user_details });
     } catch (err) {
-        console.log(err.message);
+        console.log("Error" + err.message);
     }
 });
 

@@ -82,14 +82,17 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
 
             let user_id = document.querySelector('#user_id');
-            let shelf_id = this.id;
+            let shelf_id = parseInt(this.id);
 
             var xhr = new XMLHttpRequest();
+            console.log(`${server}api/user/${parseInt(user_id.innerHTML)}/delete_shelf/${shelf_id}`);
             xhr.open('DELETE', `${server}api/user/${parseInt(user_id.innerHTML)}/delete_shelf/${shelf_id}`, true);
-            xhr.setRequestHeader("Content-Type", "application/json");
+            // xhr.setRequestHeader("Content-Type", "application/json");
 
             xhr.onload = function () {
                 if (this.status == 200) {
+                    console.log("Response recieved");
+                    window.location = `${server}user/${user_id.innerHTML}`;
                     // var obj_del_shelf = JSON.parse(this.responseText);
                     // //         console.log(obj_shelf);
                     // window.location = `${server}user/${parseInt(user_id.innerHTML)}`;
@@ -109,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     // var data = JSON.stringify({ "shelf_name": shelf_name.value });
 
-                    // xhr.send(data);
+                    xhr.send();
 
                 
             
@@ -156,6 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (this.status == 200) {
                 var obj_shelf = JSON.parse(this.responseText);
                 console.log(obj_shelf);
+
                 window.location = `${server}user/${parseInt(user_id.innerHTML)}`;
                 // if(login_status(users.status))
                 // {
