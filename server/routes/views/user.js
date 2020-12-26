@@ -47,9 +47,10 @@ router.get("/:user_id", require_auth, async (req, res) => {
 // @desc Logout the user
 // @access logged-in user
 
-router.get("/logout", require_auth, (req, res) => {
+router.get("/:user_id/logout", require_auth, (req, res) => {
+    const {user_id} = req.params;
     res.cookie('jwt', '', {maxAge: 1});
-    res.redirect("/");
+    res.redirect(`/${user_id}`);
 });
 
 module.exports = router;
