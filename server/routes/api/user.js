@@ -13,9 +13,17 @@ const saltRounds = 10;
 
 router.put('/:user_id/edit_bio', require_auth, async (req, res) => {
     try {
-        
+        const {user_bio} = req.body;
+        const {user_id} = req.params;
+        const edited_record = await pool.query("UPDATE users\
+                                          SET user_bio = $1\
+                                          WHERE user_id = $2\
+                                          RETURNING user_bio",
+                                          [user_bio, user_id]);
+        res.status(200).json({status: "success", user_bio});
     } catch (err) {
         console.log("Error: " + err);
+        res.status(400).json({status: "unsuccessful"});
     }
 });
 

@@ -25,19 +25,19 @@ const check_user = (req, res, next) => {
         jwt.verify(token, keys.JWT_SECRET, async (err, decoded_token) => {
             if(err){
                 console.log(err.message);
-                res.locals.user = null;
+                res.locals.logged_in_user = null;
                 next();
             } else {
                 const user = await pool.query("SELECT *\
                                                FROM users\
                                                WHERE user_id = $1",
                                                [decoded_token.id]);
-                res.locals.user = user.rows[0];
+                res.locals.logged_in_user = user.rows[0];
                 next();
             }
         });
     } else {
-        res.locals.user = null;
+        res.locals.logged_in_user = null;
         next();
     }
 }
