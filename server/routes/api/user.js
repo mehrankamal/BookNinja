@@ -33,9 +33,18 @@ router.put('/:user_id/edit_bio', require_auth, async (req, res) => {
 
 router.put('/:user_id/edit_name', require_auth, async (req, res) => {
     try {
-        
+        const {user_id} = req.params;
+        const {user_name} = req.body;
+
+        const edited_record = await pool.query("UPDATE users\
+                                                SET user_name = $1\
+                                                WHERE user_id = $2\
+                                                RETURNING user_name",
+                                                [user_name, user_id]);
+        res.status(200).json({status: "success", user_name});
     } catch (err) {
         console.log("Error: " + err);
+        res.status(400).json({status: 'unsuccessful'});
     }
 });
 
