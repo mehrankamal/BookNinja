@@ -29,20 +29,7 @@ button_book_del_shelf.forEach(function (any) {
         xhr.onload = function () {
             if (this.status == 200) {
                 window.location = `${server}user/${parseInt(user_id.innerHTML)}/shelf/${parseInt(shelf_id.innerHTML)}`;
-        // //         //         var obj_del_shelf = JSON.parse(this.responseText);
-        // //         //         //         console.log(obj_shelf);
-        // //         //         
-        // //         //         //         // if(login_status(users.status))
-        // //         //         //         // {
-        // //         //         //         //     console.log(users);
-        // //         //         //         // }
-        // //         //         //         // else 
-        // //         //         //         // {
-        // //         //         //         //     console.log(users);
-        // //         //         //         //    let x = document.querySelector("#login_check");
-
-        // //         //         //         //     x.innerHTML = "Incorrect username or password";
-        // //         //         //         // }
+        
               }
           }
 
