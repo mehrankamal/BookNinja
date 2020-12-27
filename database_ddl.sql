@@ -10,6 +10,7 @@ CREATE Table Books (
 	description VARCHAR(500),
 	pub_date DATE,
 	genre varchar(20),
+	author_id INTEGER not null,
 	
 	UNIQUE (title),
 	PRIMARY KEY (book_isbn_10)
@@ -23,12 +24,6 @@ CREATE TABLE Authors(
 	PRIMARY KEY (author_id)
 );
 
-CREATE TABLE Book_authored(
-	book_isbn_10 VARCHAR(11),
-	author_id VARCHAR(11),
-
-	PRIMARY KEY (book_isbn_10, author_id)
-);
 
 CREATE TABLE User_shelf(
 	shelf_id SERIAL,
@@ -134,3 +129,4 @@ ALTER TABLE seller_book ADD FOREIGN KEY (seller_id) REFERENCES sellers(seller_id
 ALTER TABLE seller_book ADD FOREIGN KEY (book_isbn_10) REFERENCES books(book_isbn_10);
 ALTER TABLE user_follows ADD FOREIGN KEY (user_id) REFERENCES users(user_id);
 ALTER TABLE user_follows ADD FOREIGN KEY (following_id) REFERENCES users(user_id);
+ALTER TABLE books ADD FOREIGN KEY (author_id) REFERENCES Authors(author_id);
