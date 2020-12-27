@@ -116,12 +116,14 @@ router.post("/signup", async (req, res) => {
         );
         const token = create_token(newUser.rows[0].user_id);
 
-        res.status(200).json({ status: "success", user_id: newUser.rows[0].user_id });
+        res.redirect(`/api/verify/${newUser.rows[0].user_id}/${user_email}`);
     } catch (err) {
         if (err.constraint === "users_user_email_key")
             res.json({ status: "user already exists" });
-        else console.log("Error: " + err);
+        else{
+            console.log("Error: " + err);
             res.json({err});
+        }
     }
 });
 

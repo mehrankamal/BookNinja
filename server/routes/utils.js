@@ -7,4 +7,10 @@ const create_token = (id) => {
     });
 };
 
-module.exports = {create_token};
+const create_email_token = (id, email) => {
+    return jwt.sign({id, email}, keys.JWT_EMAIL_SECRET, {
+        expiresIn: '1d'
+    });
+};
+
+module.exports = {create_token, create_email_token};

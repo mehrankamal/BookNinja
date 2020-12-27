@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 
 const pool = require("./db");
 const user_api_routes = require("./routes/api/user");
+const verification_route = require("./routes/api/verify");
 const user_view_routes = require("./routes/views/user");
 const { check_user } = require("./middleware/jwtMiddleware");
 
@@ -28,6 +29,7 @@ app.use(check_user);
 
 //API Routes
 app.use("/api/user", user_api_routes);
+app.use("/api/verify", verification_route);
 
 //Views Routes
 app.use("/user", user_view_routes);
