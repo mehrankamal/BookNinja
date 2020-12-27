@@ -81,6 +81,25 @@ router.post("/:user_id/add_shelf", require_auth, async (req, res) => {
     }
 });
 
+// @route   DELETE api/user/:user_id/delete_shelf/:shelf_id/:book_id
+// @desc    Delete a book related to a shelf
+// @access  private (user can delete only it's related books from a shelf)
+
+router.delete("/:user_id/delete_book/:shelf_id/:book_id", require_auth, async (req, res) => {
+    try {
+        const {user_id, shelf_id, book_id} = req.params;
+        const deletedBook = await pool.query("DELETE FROM shelf_books\
+                                              WHERE shelf_id = $1 AND book_isbn_10 = $2",
+                                              [parseInt(shelf_id), book_id]);
+        res.status(200);
+        res.end();
+
+    } catch (err) {
+        console.log("Error "+ err.message);
+        res.json({err});
+    }
+});
+
 // @route   DELETE api/user/:user_id/delete_shelf/:shelf_id
 // @desc    Delete a shelf related to a user
 // @access  private (user can delete only it's related shelves)
@@ -98,8 +117,10 @@ router.delete("/:user_id/delete_shelf/:shelf_id", require_auth, async (req, res)
         res.end();
     } catch (err) {
         console.log("Error: " + err);
+        res.json({err});
     }
 });
+
 
 // @route   POST api/user/signup
 // @desc    Signup user
