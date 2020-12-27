@@ -24,46 +24,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
         any.addEventListener("click", function (e) {
 
-            
-
-
-
-            console.log(this.id);
 
             e.preventDefault();
 
             let user_id = document.querySelector('#user_id');
             let shelf_id = this.id;
 
+            window.location = `${server}user/${parseInt(user_id.innerHTML.trim())}/shelf/${parseInt(shelf_id)}`;
+            
             // var xhr = new XMLHttpRequest();
-            // // xhr.open('POST', `${server}api/user/${parseInt(user_id.innerHTML)}/add_shelf`, true);
+            // xhr.open('GET', `${server}user/${parseInt(user_id.innerHTML.trim())}/shelf/${parseInt(shelf_id)}`, true);
             // xhr.setRequestHeader("Content-Type", "application/json");
 
             // xhr.onload = function () {
             //     if (this.status == 200) {
-            //         var obj_del_shelf = JSON.parse(this.responseText);
-            //         //         console.log(obj_shelf);
-            //         window.location = `${server}user/${parseInt(user_id.innerHTML)}`;
-            //         //         // if(login_status(users.status))
-            //         //         // {
-            //         //         //     console.log(users);
-            //         //         // }
-            //         //         // else 
-            //         //         // {
-            //         //         //     console.log(users);
-            //         //         //    let x = document.querySelector("#login_check");
+            //         window.location = `${server}user/${parseInt(user_id.innerHTML)}/shelf/`;
+            //         //         var obj_del_shelf = JSON.parse(this.responseText);
+            //         //         //         console.log(obj_shelf);
+            //         //         
+            //         //         //         // if(login_status(users.status))
+            //         //         //         // {
+            //         //         //         //     console.log(users);
+            //         //         //         // }
+            //         //         //         // else 
+            //         //         //         // {
+            //         //         //         //     console.log(users);
+            //         //         //         //    let x = document.querySelector("#login_check");
 
-            //         //         //     x.innerHTML = "Incorrect username or password";
-            //         //         // }
-            //              }
-            //          }
+            //         //         //         //     x.innerHTML = "Incorrect username or password";
+            //         //         //         // }
+            //     }
+            // }
 
-            //          var data = JSON.stringify({ "shelf_name": shelf_name.value });
-
-            //          xhr.send(data);
+            // //          var data = JSON.stringify({ "shelf_name": shelf_name.value });
+            
+            // xhr.send();
+           
 
         }
-        )
+        );
     }
     );
     //go_to_shelf_pop_up_logic_End
@@ -192,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             popup_bio.style.display = "none";
 
-            
+
             let user_id = document.querySelector('#user_id');
 
             var xhr = new XMLHttpRequest();
@@ -218,49 +217,47 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         );
 
-        
+
 
 
 
     });
 
 
-    logout.addEventListener("click", function(e)
-        {
-            console.log("heyyyyy");
-            e.preventDefault()
-            let user_id = document.querySelector('#user_id');
+    logout.addEventListener("click", function (e) {
+        console.log("heyyyyy");
+        e.preventDefault()
+        let user_id = document.querySelector('#user_id');
 
-            var xhr = new XMLHttpRequest();
+        var xhr = new XMLHttpRequest();
 
-            xhr.open('GET', `${server}user/${parseInt(user_id.innerHTML)}/logout`, true);
+        xhr.open('GET', `${server}user/${parseInt(user_id.innerHTML)}/logout`, true);
 
-            xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader("Content-Type", "application/json");
 
-             xhr.onload = function () {
-                 if (this.status == 200) {
-            
-
-                    window.location = `${server}`;
-                 }
-             }
-            // console.log(new_bio.value);
-
-            xhr.send();
-
-        });
+        xhr.onload = function () {
+            if (this.status == 200) {
 
 
-    
-    edit_username_button.addEventListener("click",function (e)
-        {
-            e.preventDefault();
-            popup_edit_name.style.display = "block";
+                window.location = `${server}`;
+            }
+        }
+        // console.log(new_bio.value);
+
+        xhr.send();
+
+    });
 
 
-            //popup opening and closing for adding bio
-            new_name = document.querySelector("#new_name");
-            new_name.value = document.querySelector("#user_name").innerText;
+
+    edit_username_button.addEventListener("click", function (e) {
+        e.preventDefault();
+        popup_edit_name.style.display = "block";
+
+
+        //popup opening and closing for adding bio
+        new_name = document.querySelector("#new_name");
+        new_name.value = document.querySelector("#user_name").innerText;
 
 
         //closing event listener
@@ -277,49 +274,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         //put request on submit Edit username buttion
-         let submit_name = document.querySelector("#submit_name");
-         submit_name.addEventListener("click", function (e) {
-             e.preventDefault();
+        let submit_name = document.querySelector("#submit_name");
+        submit_name.addEventListener("click", function (e) {
+            e.preventDefault();
             popup_bio.style.display = "none";
-        
-            
-             let user_id = document.querySelector('#user_id');
-
-             if(new_name.value.trim().length >0 )
-             {
-             var xhr = new XMLHttpRequest();
-             xhr.open('PUT', `${server}api/user/${parseInt(user_id.innerHTML)}/edit_name`, true);
-             xhr.setRequestHeader("Content-Type", "application/json");
-
-             xhr.onload = function () {
-                 if (this.status == 200) {
-                     var obj_shelf = JSON.parse(this.responseText);
-                     console.log(obj_shelf);
-
-                     window.location = `${server}user/${parseInt(user_id.innerHTML)}`;
-                 }
-             }
-             console.log(new_name.value);
-             var data = JSON.stringify({ "user_name": new_name.value });
 
 
+            let user_id = document.querySelector('#user_id');
 
-             xhr.send(data);
+            if (new_name.value.trim().length > 0) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('PUT', `${server}api/user/${parseInt(user_id.innerHTML)}/edit_name`, true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+
+                xhr.onload = function () {
+                    if (this.status == 200) {
+                        var obj_shelf = JSON.parse(this.responseText);
+                        console.log(obj_shelf);
+
+                        window.location = `${server}user/${parseInt(user_id.innerHTML)}`;
+                    }
+                }
+                console.log(new_name.value);
+                var data = JSON.stringify({ "user_name": new_name.value });
+
+
+
+                xhr.send(data);
             }
 
             else {
                 alert("Enter Atleast one valid Character for username");
             }
 
-            });
+        });
 
 
-        }
-        );
+    }
+    );
 
 
 
-        // });
+    // });
 
 
- });
+});

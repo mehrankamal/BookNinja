@@ -27,7 +27,7 @@ a {
 
 
 a:link {
-    color: white;
+    color: black;
   }
   
   /* visited link */
@@ -35,7 +35,7 @@ a:link {
   
   /* mouse over link */
   a:hover {
-    color: blue;
+    color: rgba(0, 247, 255, 0.603);
   }
   
   /* selected link */
@@ -43,3 +43,12 @@ a:link {
     color: black;
   }
 
+  /* .trans_hover {
+    transition: width 2s, transform 1s;
+  }
+  
+  .trans_hover:hover {
+    width: 50rem;
+    height: 20rem;
+    transform: rotate(360deg);
+  } */

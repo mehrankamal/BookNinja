@@ -61,6 +61,8 @@ router.get("/:user_id/logout", require_auth, (req, res) => {
 router.get("/:user_id/shelf/:shelf_id", require_auth,async (req, res) => {
     try {
         const {user_id, shelf_id} = req.params;
+        console.log(shelf_id);
+        console.log(user_id);
         const books = await pool.query("SELECT user_shelf.shelf_name, books.book_isbn_10, books.title,\
                                          books.description, books.pub_date, books.genre, authors.author_name\
                                         FROM user_shelf, shelf_books, books, authors\
@@ -71,7 +73,7 @@ router.get("/:user_id/shelf/:shelf_id", require_auth,async (req, res) => {
                                                 AND user_shelf.user_id = $2;",
                                         [shelf_id, user_id]);
         console.log(books.rows);
-        res.render({'shelf_view': books.rows});
+        res.render("shelf_view", {books: books.rows,shelf_id,user_id});
     } catch (err) {
         console.log("Error: " + err.message);
         res.status(300).json({err: err.message});
