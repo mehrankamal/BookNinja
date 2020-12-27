@@ -16,7 +16,7 @@ body,html {
   }
 
   #bio_feild{
-    text-emphasis: weigh;
+    /* text-emphasis: weigh; */
     text-align: center;
     height: 10rem;
     margin-bottom: 3rem;
@@ -24,3 +24,4 @@ body,html {
     border-radius: 25px;
     background-color: rgb(59, 56, 56,0.08);
   }
+

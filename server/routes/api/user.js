@@ -15,6 +15,8 @@ router.put('/:user_id/edit_bio', require_auth, async (req, res) => {
     try {
         const {user_bio} = req.body;
         const {user_id} = req.params;
+
+        console.log(user_bio + user_id);
         const edited_record = await pool.query("UPDATE users\
                                           SET user_bio = $1\
                                           WHERE user_id = $2\
@@ -137,7 +139,7 @@ router.post("/signin", async (req, res) => {
         );
 
         if (user.rowCount === 0) {
-            res.status(400).json({ status: "invalid" });
+            res.json({ status: "invalid" });
         } else {
             if (await bcrypt.compare(user_pass, user.rows[0].user_pass)) {
                 const token = create_token(user.rows[0].user_id);
@@ -147,6 +149,7 @@ router.post("/signin", async (req, res) => {
         }
     } catch (err) {
         console.error("Error: " + err);
+        res.status(400).end();
     }
 });
 
