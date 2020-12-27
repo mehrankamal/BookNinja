@@ -1,10 +1,10 @@
-/* body,html {
+body,html {
   
-  background: url(https://wallpaperaccess.com/full/124400.jpg);
+  background: url(https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm21-paper-tang-61.jpg?w=1300&dpr=1&fit=default&crop=default&q=80&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=9d066254f24bb8feaff0e38ba82fa2e6);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-} */
+}
 
 .extra_margin{
     margin-top: 10px;
@@ -12,5 +12,16 @@
 
   .card{
     margin-bottom: 2rem;
-    background-color: rgb(3, 252, 148,0.2);
+    background-color: rgb(59, 56, 56,0.13);
   }
+
+  #bio_feild{
+    /* text-emphasis: weigh; */
+    text-align: center;
+    height: 10rem;
+    margin-bottom: 3rem;
+    border: 2px solid rgb(59, 56, 56,0.15);
+    border-radius: 25px;
+    background-color: rgb(59, 56, 56,0.08);
+  }
+

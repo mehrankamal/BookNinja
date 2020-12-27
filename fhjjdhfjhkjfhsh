@@ -1,0 +1,193 @@
+[33mcommit b1cd86b38a5c399056e517c6fc0b731b4802adcf[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Abdullah Abro <kamario.abdullah@gmail.com>
+Date:   Sat Dec 26 20:36:15 2020 +0500
+
+    navigation bar changes
+
+[33mcommit 1cfa963e322065df1fb7afc27282b680047b0bd3[m
+Author: Mehran Kamal <mkbalochhoth@gmail.com>
+Date:   Sat Dec 26 19:06:31 2020 +0500
+
+    Logout route resolution.
+
+[33mcommit 401a8a0107472af109e91d82ef7fd5451a94bffc[m
+Author: sidanas22 <anasaziz1998@gmail.com>
+Date:   Sat Dec 26 05:25:41 2020 +0500
+
+    completed delete_shelf backend and frontend
+    integeration
+
+[33mcommit 19475633a3e54ae8d18731202c0b3f4c3709d035[m
+Merge: 017cf3a 08f51ad
+Author: sidanas22 <anasaziz1998@gmail.com>
+Date:   Sat Dec 26 04:38:45 2020 +0500
+
+    Merge resolution
+
+[33mcommit 017cf3a64943afa1870c6dea1f11f9f2e2484031[m
+Author: sidanas22 <anasaziz1998@gmail.com>
+Date:   Sat Dec 26 04:36:49 2020 +0500
+
+    Changes in api adresses.
+
+[33mcommit 08f51ad32998324cddb95318a20a8207cc1fdc63[m
+Author: Mehran Kamal <mkbalochhoth@gmail.com>
+Date:   Sat Dec 26 04:35:03 2020 +0500
+
+    JWT dependency resolution.
+
+[33mcommit 71435795e0ab2b166c8e3aece7a8d286a4813aec[m
+Merge: 3badc91 6d1834c
+Author: sidanas22 <anasaziz1998@gmail.com>
+Date:   Sat Dec 26 04:22:20 2020 +0500
+
+    Merge branch 'master' of https://github.com/mehrankamal/BookNinja
+
+[33mcommit 3badc9123e70056aa814b9d5aebbe8242539af35[m
+Author: sidanas22 <anasaziz1998@gmail.com>
+Date:   Sat Dec 26 04:20:22 2020 +0500
+
+    Delete fuctionality and add to shelf functionality
+
+[33mcommit 6d1834c1798bce492022578d9cf8afcb2c27fe89[m
+Merge: f62345a 7e239cc
+Author: Mehran Kamal <mkbalochhoth@gmail.com>
+Date:   Sat Dec 26 04:18:19 2020 +0500
+
+    Merge branch 'master' of https://github.com/mehrankamal/BookNinja
+
+[33mcommit f62345ad5f7c5e3a117f3dda5d9d6c772a8139e7[m
+Author: Mehran Kamal <mkbalochhoth@gmail.com>
+Date:   Sat Dec 26 04:17:51 2020 +0500
+
+    Delete shelf route done.
+
+[33mcommit 7e239cc9822d05322483ca07e301d2b1da5ccbf4[m
+Author: Abdullah Abro <kamario.abdullah@gmail.com>
+Date:   Sat Dec 26 03:55:41 2020 +0500
+
+    DDL changes for Shelf deletion purpose
+
+[33mcommit f714069b87ccb2e0d770af12b45400954d9dbb7a[m
+Author: Mehran Kamal <mkbalochhoth@gmail.com>
+Date:   Sat Dec 26 03:37:48 2020 +0500
+
+    Added the GET /user/logout route
+
+[33mcommit 93a2bec74ae8927fdf3cf2f26c218282c361d8e6[m
+Author: Mehran Kamal <mkbalochhoth@gmail.com>
+Date:   Sat Dec 26 03:23:18 2020 +0500
+
+    Added middleware for jwt and authentication for private routes.
+
+[33mcommit 4ad6c2cf29e5adac22b79ede0e66545ae21e4649[m
+Merge: f47841b 79f229a
+Author: Mehran Kamal <mkbalochhoth@gmail.com>
+Date:   Sat Dec 26 02:20:15 2020 +0500
+
+    Merge branch 'master' of https://github.com/mehrankamal/BookNinja
+
+[33mcommit f47841b061453028bc62e0198fdf5f96fa9ac52b[m
+Author: Mehran Kamal <mkbalochhoth@gmail.com>
+Date:   Sat Dec 26 02:19:23 2020 +0500
+
+    Added jwt token cookie in /api/user/login route
+
+[33mcommit 79f229a302b7aac3ff290d4c1aa44ce769c2cf22[m
+Author: sidanas22 <anasaziz1998@gmail.com>
+Date:   Sat Dec 26 00:41:17 2020 +0500
+
+    added shelf_add functionality to front end
+
+[33mcommit 945a7da13ff638f3d2321f89af572adf1b33a1bb[m
+Author: Mehran Kamal <mkbalochhoth@gmail.com>
+Date:   Fri Dec 25 23:43:29 2020 +0500
+
+    Add shelf route at /user/api/:user_id/add_shelf
+
+[33mcommit e2e8287dc3e5750b46ee7658fb83f57823b37a5e[m
+Merge: fdf59fc 949134f
+Author: Mehran Kamal <mkbalochhoth@gmail.com>
+Date:   Fri Dec 25 23:13:07 2020 +0500
+
+    Merge branch 'master' of https://github.com/mehrankamal/BookNinja
+
+[33mcommit 949134f5e49e8dc255b105952e03759c7508e3b3[m
+Merge: d95b9f8 15eda4e
+Author: sidanas22 <anasaziz1998@gmail.com>
+Date:   Fri Dec 25 23:10:58 2020 +0500
+
+    Merge conflict resolution
+
+[33mcommit d95b9f85322e58993ebb69a25cc72c08605040a7[m
+Author: sidanas22 <anasaziz1998@gmail.com>
+Date:   Fri Dec 25 23:07:41 2020 +0500
+
+    Functionnality update for adding and viewing shelves.
+
+[33mcommit fdf59fc2b9b5b9e749511cec6039024430808b40[m
+Author: Mehran Kamal <mkbalochhoth@gmail.com>
+Date:   Fri Dec 25 23:00:22 2020 +0500
+
+    Changes in login_signup script.
+
+[33mcommit 15eda4ea0fcbb52cfbab1695fd8d053eded605c6[m
+Author: Mehran Kamal <mkbalochhoth@gmail.com>
+Date:   Fri Dec 25 21:47:01 2020 +0500
+
+    Sign up error fixed for duplicate records.
+
+[33mcommit 1ba1e1b76792678c779583b096bec75a715bbacf[m
+Author: sidanas22 <anasaziz1998@gmail.com>
+Date:   Fri Dec 25 19:02:32 2020 +0500
+
+    EJS bug resolve and user_profile view barebones.
+
+[33mcommit 4d6e3d275655f02fac74327265c8119fb3f4fe4a[m
+Author: Abdullah Abro <kamario.abdullah@gmail.com>
+Date:   Fri Dec 25 16:24:11 2020 +0500
+
+    Made changes to error messages
+
+[33mcommit d57f274f51b6a16e9c7321c5143a8b3321bdbe4e[m
+Merge: d477884 753e9a6
+Author: Abdullah Abro <kamario.abdullah@gmail.com>
+Date:   Fri Dec 25 00:34:01 2020 +0500
+
+    Merge branch 'master' of https://github.com/mehrankamal/BookNinja
+
+[33mcommit d477884592f74712a3dcff686bc8486775160e0f[m
+Author: Abdullah Abro <kamario.abdullah@gmail.com>
+Date:   Fri Dec 25 00:31:07 2020 +0500
+
+    Bare bones of signin and signup.
+
+[33mcommit 753e9a6e5dae167549e78b854cc0d92d447c0740[m
+Author: Mehran Kamal <mehran_kamal@outlook.com>
+Date:   Sat Dec 5 03:42:31 2020 +0500
+
+    Update README.md
+
+[33mcommit 0840f4f49cd7d33cd7619fb965a04bae801e8f3e[m
+Author: Mehran Kamal <mkbalochhoth@gmail.com>
+Date:   Sat Dec 5 03:30:04 2020 +0500
+
+    .gitignore changes.
+
+[33mcommit eefb01af9dee7247f391569dd8620c3c83f57613[m
+Author: Mehran Kamal <mkbalochhoth@gmail.com>
+Date:   Sat Dec 5 03:27:19 2020 +0500
+
+    Config setup.
+
+[33mcommit 3b4a8f8e89914c5459ed6bfa929563583fe4b7b2[m
+Author: Mehran Kamal <mkbalochhoth@gmail.com>
+Date:   Sat Dec 5 02:53:22 2020 +0500
+
+    Readme added.
+
+[33mcommit 384ad939629edb01d67eac30baad7d6d97e0ee2a[m
+Author: Mehran Kamal <mkbalochhoth@gmail.com>
+Date:   Sat Dec 5 02:51:50 2020 +0500
+
+    Backend user sign up and sign in APIs.

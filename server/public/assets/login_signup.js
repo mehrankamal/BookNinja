@@ -88,6 +88,26 @@ document.addEventListener("DOMContentLoaded", () => {
             pass_confirm.value = "";
             return;
         }
+
+        if(username.value.trim().length===0)
+        {
+            alert("Enter A valid User name of atleast one character");
+            return;
+        }
+
+        if(email.value.trim().length===0)
+        {
+            alert("Enter valid email");
+            return;
+        }
+
+
+        if(pass.value.trim().length<4)
+        {
+            alert("Enter A valid password of atleast 8 characters");
+            return;
+        }
+
         
 
         var xhr = new  XMLHttpRequest();

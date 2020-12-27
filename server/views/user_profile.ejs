@@ -12,7 +12,7 @@
 
   <!-- Bootstrap core CSS -->
   <link href="/public/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+ 
   <!-- Custom styles for this template -->
   <link href="/public/assets/css/blog-post.css" rel="stylesheet">
   <link rel="stylesheet" href="/public/assets/user_profile_styles.css" type="text/css">
@@ -38,10 +38,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#" id="about_btn" >profile</a>
+            <a class="nav-link active" href="#" id="about_btn">profile</a>
           </li>
           <li class="nav-item" id="logout_btn">
-            <a class="nav-link" href="#">logout</a>
+            <a class="nav-link" href="#" id = "logout">logout</a>
           </li>
         </ul>
       </div>
@@ -66,8 +66,9 @@
           <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png" class="img-rounded" />
 
           <!-- Header text (Person's name) -->
+      
           <h2>
-            <%=user_details.user.user_name%>
+            <%=user_details.user.user_name%> <a href="#" id="button_for_edit_name"><span class = "badge bg-dark" >Edit</span></a>
           </h2>
 
           <!-- Social buttons using anchor elements and btn-primary class to style -->
@@ -88,8 +89,8 @@
       <div class="col-md-8 col-sm-* col-xs-*">
 
         <!-- "Lead" text at top of column. -->
-        <p style = "font-weight: bold; font-size: 1.75rem" class="lead">Bio
-          <a style="float: right" href="#" class="btn btn-dark" id="23">Edit</a>
+        <p style="font-weight: bold; font-size: 1.75rem" class="lead">Bio
+          <a style="float: right" href="#" class="btn btn-dark edit_bio" id=<%=user_details.user.user_id%>>Edit</a>
         </p>
 
         <!-- Horizontal rule to add some spacing between the "lead" and body text -->
@@ -97,23 +98,23 @@
 
         <!-- Body text (paragraph 2) -->
 
-        <p>
+        <div id="bio_feild">
           <%=user_details.user.user_bio%>
-        </p>
+        </div>
+
 
         <!-- Bcak-end values stored here  -->
         <p class="sr-only" id="user_id">
           <%=user_details.user.user_id%>
         </p>
-        <p class="sr-only" id="shelf_id">
-          <%=user_details.user.user_id%>
+       
+        <p class = "sr-only" id="user_name">
+          <%=user_details.user.user_name%>
         </p>
+        
 
 
-        <br><br><br><br><br>
-        <br>
-        <br>
-        <br>
+
 
         <h3>Shelf List</h3>
 
@@ -174,36 +175,145 @@
             </div>
           </div>
         </div>
-        
+
         <!-- pop_up add to shelf end-->
 
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+
+        <!-- popup for editing name -->
+
+
+        <div class="modal fade show" id="popup_edit_name" tabindex="-1" aria-labelledby="exampleModalScrollableTitle"
+          style="display: none; padding-right: 17px;" aria-modal="true" role="dialog">
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Your Username</h5>
+                <button type="button" class="btn btn-secondary close_popup_name" data-bs-dismiss="modal"
+                  aria-label="Close">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                    <path
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+                  </svg>
+                </button>
+              </div>
+              <div class="modal-body">
+
+
+                <form>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Enter Your New Username:</label>
+                    <input type="text" minlength="1" maxlength="20" class="form-control" id="new_name">
+                    <!-- <div id="emailHelp" class="form-text"></div> -->
+                  </div>
+                  <!-- <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1">
+        </div> -->
+                  <!-- <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div> -->
+                  <button type="submit" class="btn btn-primary" id="submit_name">Submit</button>
+                  <button type="button" class="btn btn-secondary close_popup_name">Close</button>
+                </form>
+
+
+              </div>
+              <!-- <div class="modal-footer">
+      <button type="button" class="btn btn-secondary close_popup" data-bs-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary">Save changes</button>
+    </div> -->
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <!--popup for editing name end -->
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+
+        <!-- popup for adding to bio -->
+        <div class="modal fade show" id="popup_bio" tabindex="-1" aria-labelledby="exampleModalScrollableTitle"
+          style="display: none; padding-right: 17px;" aria-modal="true" role="dialog">
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Your Bio</h5>
+                <button type="button" class="btn btn-secondary close_popup_bio" data-bs-dismiss="modal"
+                  aria-label="Close">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                    <path
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+                  </svg>
+                </button>
+              </div>
+              <div class="modal-body">
+
+
+                <form>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Enter Your New Bio:</label>
+                    <input type="text" class="form-control" id="new_bio">
+                    <!-- <div id="emailHelp" class="form-text"></div> -->
+                  </div>
+                  <!-- <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1">
+        </div> -->
+                  <!-- <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div> -->
+                  <button type="submit" class="btn btn-primary" id="submit_bio">Submit</button>
+                  <button type="button" class="btn btn-secondary close_popup_bio">Close</button>
+                </form>
+
+
+              </div>
+              <!-- <div class="modal-footer">
+      <button type="button" class="btn btn-secondary close_popup" data-bs-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary">Save changes</button>
+    </div> -->
+            </div>
+          </div>
+        </div>
+
+        <!-- popup bio ends here -->
 
 
         <!-- pop_up go to shelf-->
 
-<div class="modal fade show" id="pop_up_for_go_to_shelf" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" style="display: none; padding-right: 17px;" aria-modal="true" role="dialog">
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
-      
-      <div class="modal-header">
-        <h5 class="modal-title" id="shelf_name_for_pop_up_go_to_shelf">shelf_name</h5>
+        <div class="modal fade show" id="pop_up_for_go_to_shelf" tabindex="-1"
+          aria-labelledby="exampleModalScrollableTitle" style="display: none; padding-right: 17px;" aria-modal="true"
+          role="dialog">
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
 
-        
-        <button type="button" class="btn-close close_popup_goToShelf" data-bs-dismiss="modal" aria-label="Close">CLOSE</button>
-      
-      </div>
+              <div class="modal-header">
+                <h5 class="modal-title" id="shelf_name_for_pop_up_go_to_shelf">shelf_name</h5>
 
-      <div class="modal-body">
-        <p>pee pee poo poo</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger close_popup_goToShelf" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- pop_up go to shelf END-->
+
+                <button type="button" class="btn-close close_popup_goToShelf" data-bs-dismiss="modal"
+                  aria-label="Close">CLOSE</button>
+
+              </div>
+
+              <div class="modal-body">
+                <p>pee pee poo poo</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger close_popup_goToShelf"
+                  data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- pop_up go to shelf END-->
 
 
 
@@ -220,7 +330,8 @@
                     <!-- <p class="card-text"></p> -->
                     <a href="#" class="btn btn-danger delete_shelf" id=<%=user_details.shelves[i].shelf_id%>>Delete</a>
                   </p>
-                  <a href="#" class="btn btn-warning btn_go_to_shelf" id=<%=user_details.shelves[i].shelf_name%> >Go to shelf</a>
+                  <a href="#" class="btn btn-warning btn_go_to_shelf" id=<%=user_details.shelves[i].shelf_name%> >Go to
+                    shelf</a>
                 </div>
               </div>
             </div>
@@ -250,7 +361,7 @@
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
     crossorigin="anonymous"></script> -->
-  
+
   <!-- Bootstrap core JavaScript -->
   <script src="/public/assets/vendor/jquery/jquery.min.js"></script>
   <script src="/public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -265,6 +376,8 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   -->
+
+
   <script type="text/javascript" src="/public/assets/user_profile_script.js"> </script>
 
 </body>
