@@ -288,6 +288,8 @@ document.addEventListener("DOMContentLoaded", () => {
             
              let user_id = document.querySelector('#user_id');
 
+             if(new_name.value.trim().length >0 )
+             {
              var xhr = new XMLHttpRequest();
              xhr.open('PUT', `${server}api/user/${parseInt(user_id.innerHTML)}/edit_name`, true);
              xhr.setRequestHeader("Content-Type", "application/json");
@@ -306,6 +308,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
              xhr.send(data);
+            }
+
+            else {
+                alert("Enter Atleast one valid Character for username");
+            }
 
             });
 
