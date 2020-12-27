@@ -7,6 +7,49 @@ const {require_auth} = require("../../middleware/jwtMiddleware");
 const router = express.Router();
 const saltRounds = 10;
 
+// @route   PUT api/user/:user_id/edit_bio
+// @desc    Edit bio of a user
+// @access  private (user can edit his own bio)
+
+router.put('/:user_id/edit_bio', require_auth, async (req, res) => {
+    try {
+        const {user_bio} = req.body;
+        const {user_id} = req.params;
+
+        console.log(user_bio + user_id);
+        const edited_record = await pool.query("UPDATE users\
+                                          SET user_bio = $1\
+                                          WHERE user_id = $2\
+                                          RETURNING user_bio",
+                                          [user_bio, user_id]);
+        res.status(200).json({status: "success", user_bio});
+    } catch (err) {
+        console.log("Error: " + err);
+        res.status(400).json({status: "unsuccessful"});
+    }
+});
+
+// @route   PUT api/user/:user_id/edit_name
+// @desc    Edit name of a user
+// @access  private (user can add shelf into his own account)
+
+router.put('/:user_id/edit_name', require_auth, async (req, res) => {
+    try {
+        const {user_id} = req.params;
+        const {user_name} = req.body;
+
+        const edited_record = await pool.query("UPDATE users\
+                                                SET user_name = $1\
+                                                WHERE user_id = $2\
+                                                RETURNING user_name",
+                                                [user_name, user_id]);
+        res.status(200).json({status: "success", user_name});
+    } catch (err) {
+        console.log("Error: " + err);
+        res.status(400).json({status: 'unsuccessful'});
+    }
+});
+
 // @route   POST api/user/:user_id/add_shelf
 // @desc    Add a new shelf against an user given shelf name
 // @access  private (user can add shelf into his own account)
@@ -96,7 +139,7 @@ router.post("/signin", async (req, res) => {
         );
 
         if (user.rowCount === 0) {
-            res.status(400).json({ status: "invalid" });
+            res.json({ status: "invalid" });
         } else {
             if (await bcrypt.compare(user_pass, user.rows[0].user_pass)) {
                 const token = create_token(user.rows[0].user_id);
@@ -106,6 +149,7 @@ router.post("/signin", async (req, res) => {
         }
     } catch (err) {
         console.error("Error: " + err);
+        res.status(400).end();
     }
 });
 

@@ -5,7 +5,7 @@ const { require_auth } = require("../../middleware/jwtMiddleware");
 
 const router = express.Router();
 
-// @route GET user/:id/
+// @route GET user/:user_id/
 // @desc Send the user profile view
 // @access logged-in user
 
@@ -43,14 +43,15 @@ router.get("/:user_id", require_auth, async (req, res) => {
     }
 });
 
-// @route GET user/logout/
+// @route GET user/:user_id/logout/
 // @desc Logout the user
 // @access logged-in user
 
 router.get("/:user_id/logout", require_auth, (req, res) => {
     const {user_id} = req.params;
     res.cookie('jwt', '', {maxAge: 1});
-    res.redirect(`/${user_id}`);
+    
+    res.end();
 });
 
 module.exports = router;
