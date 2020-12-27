@@ -54,4 +54,32 @@ router.get("/:user_id/logout", require_auth, (req, res) => {
     res.end();
 });
 
+// @route GET user/:user_id/shelf/:shelf_id
+// @desc Get shelf of a user
+// @access logged-in user
+
+router.get("/:user_id/shelf/:shelf_id", require_auth,async (req, res) => {
+    try {
+        const {user_id, shelf_id} = req.params;
+        const books = await pool.query("SELECT user_shelf.shelf_name, books.book_isbn_10, books.title,\
+                                         books.description, books.pub_date, books.genre, authors.author_name\
+                                        FROM user_shelf, shelf_books, books, authors\
+                                        WHERE user_shelf.shelf_id = shelf_books.shelf_id\
+                                                AND user_shelf.shelf_id = $1\
+                                                AND shelf_books.book_isbn_10 = books.book_isbn_10\
+                                                AND books.author_id = authors.author_id\
+                                                AND user_shelf.user_id = $2;",
+                                        [shelf_id, user_id]);
+        console.log(books.rows);
+        res.render({'shelf_view': books.rows});
+    } catch (err) {
+        console.log("Error: " + err.message);
+        res.status(300).json({err: err.message});
+    }
+
+
+});
+
+
+
 module.exports = router;

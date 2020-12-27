@@ -17,13 +17,12 @@ CREATE Table Books (
 );
 
 CREATE TABLE Authors(
-	author_id VARCHAR(11),
+	author_id SERIAL,
 	author_name VARCHAR(20),
-	about_author VARCHAR(500),
+	about_author VARCHAR(500) DEFAULT NULL,
 	
 	PRIMARY KEY (author_id)
 );
-
 
 CREATE TABLE User_shelf(
 	shelf_id SERIAL,
@@ -78,8 +77,8 @@ CREATE TABLE Orders(
 
 CREATE TABLE Order_books(
 	order_id INTEGER,
-	book_isbn_10 varchar(11),
-	Purchased_qty int,
+	book_isbn_10 VARCHAR(11),
+	Purchased_qty INTEGER,
 
 	PRIMARY KEY(order_id, book_isbn_10)
 );
@@ -113,14 +112,13 @@ CREATE TABLE User_follows(
 	PRIMARY KEY(user_id,following_id)
 );
 
-
-ALTER TABLE user_shelf ADD FOREIGN KEY (user_id) REFERENCES users(user_id);
+ALTER TABLE user_shelf ADD FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE;
 ALTER TABLE shelf_books ADD FOREIGN KEY (shelf_id) REFERENCES user_shelf(shelf_id) ON DELETE CASCADE;
 ALTER TABLE shelf_books ADD FOREIGN KEY (book_isbn_10) REFERENCES books(book_isbn_10) ON DELETE CASCADE;
-ALTER TABLE reviews ADD FOREIGN KEY (user_id) REFERENCES users(user_id);
-ALTER TABLE reviews ADD FOREIGN KEY (book_isbn_10) REFERENCES books(book_isbn_10);
-ALTER TABLE book_authored ADD FOREIGN KEY (book_isbn_10) REFERENCES books(book_isbn_10);
-ALTER TABLE book_authored ADD FOREIGN KEY (author_id) REFERENCES authors(author_id);
+ALTER TABLE reviews ADD FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE;
+ALTER TABLE reviews ADD FOREIGN KEY (book_isbn_10) REFERENCES books(book_isbn_10) ON DELETE CASCADE;
+ALTER TABLE book_authored ADD FOREIGN KEY (book_isbn_10) REFERENCES books(book_isbn_10) ON DELETE CASCADE;
+ALTER TABLE book_authored ADD FOREIGN KEY (author_id) REFERENCES authors(author_id) ON DELETE CASCADE;
 ALTER TABLE orders ADD FOREIGN KEY (user_id) REFERENCES users(user_id);
 ALTER TABLE orders ADD FOREIGN KEY (seller_id) REFERENCES sellers(seller_id);
 ALTER TABLE order_books ADD FOREIGN KEY (order_id) REFERENCES orders(order_id);

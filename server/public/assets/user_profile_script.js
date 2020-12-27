@@ -24,10 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         any.addEventListener("click", function (e) {
 
-            pop_up_go_to_shelf.style.display = "block";
-            //new code i entered
-            var shelf_name_in_popup = document.querySelector("#shelf_name_for_pop_up_go_to_shelf");
-            shelf_name_in_popup.innerHTML = this.id;
+            
 
 
 
