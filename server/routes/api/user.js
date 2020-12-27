@@ -117,7 +117,7 @@ router.post("/signup", async (req, res) => {
         res.status(200).json({ status: "success", user_id: newUser.rows[0].user_id });
     } catch (err) {
         if (err.constraint === "users_user_email_key")
-            res.status(400).json({ status: "user already exists" });
+            res.json({ status: "user already exists" });
         else console.log("Error: " + err);
             res.json({err});
     }
