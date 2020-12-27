@@ -157,7 +157,7 @@ router.post("/signin", async (req, res) => {
         const { user_email, user_pass } = req.body;
 
         const user = await pool.query(
-            "SELECT user_id, user_name, user_pass FROM Users WHERE user_email = $1",
+            "SELECT user_id, user_name, user_pass,confirmed FROM Users WHERE user_email = $1",
             [user_email]
         );
 
@@ -167,7 +167,7 @@ router.post("/signin", async (req, res) => {
             if (await bcrypt.compare(user_pass, user.rows[0].user_pass)) {
                 const token = create_token(user.rows[0].user_id);
                 res.cookie("jwt", token, {httpOnly: true, maxAge: 1000 * 1 * 60 * 60 * 24});
-                res.status(200).json({ status: "valid", user_id: user.rows[0].user_id });
+                res.status(200).json({ status: "valid", user_id: user.rows[0].user_id, confirmed: user.rows[0].confirmed });
             } else res.json({ status: "invalid" });
         }
     } catch (err) {

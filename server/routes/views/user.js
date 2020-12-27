@@ -33,6 +33,7 @@ router.get("/:user_id", require_auth, async (req, res) => {
                 user_id: user.rows[0].user_id,
                 num_followers: user.rows[0].num_followers,
                 num_following: user.rows[0].num_following,
+                confirmation : user.rows[0].confirmation
             },
             shelves: shelves.rows,
         };

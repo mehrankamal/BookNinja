@@ -54,9 +54,17 @@ document.addEventListener("DOMContentLoaded", () => {
             {
                 var users= JSON.parse(this.responseText);
                 console.log(users);
+                console.log(users.confirmed);
                 if(login_status(users.status))
-                {
+                {   
+                    if(users.confirmed)
+                    {
                     window.location = `${server}user/${users.user_id}`
+                    }
+                    else{
+                        alert("Confirm your email First");
+                        return;
+                    }
                 }
                 else 
                 {
@@ -118,7 +126,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if(this.status == 200)
             {
                 var user= JSON.parse(this.responseText);
-                console.log("sadsd");
                 console.log(user);
                 if(user.status!== "success")
                 {
@@ -127,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
                 else{
-                    //redirect to home page with user name on top of navbar
+                    window.location = `${server}`;
                 }
             } 
         }

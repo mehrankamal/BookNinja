@@ -35,7 +35,7 @@ router.get('/:id/:email', (req, res) => {
               console.log(info);
          });
 
-        res.redirect("/");
+        res.json({status: 'success'});
     } catch (err) {
         console.log("Verification Error: ", err);
         res.json(err.message);
