@@ -1,3 +1,12 @@
+body,html {
+  
+    background: url(https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm21-paper-tang-61.jpg?w=1300&dpr=1&fit=default&crop=default&q=80&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=9d066254f24bb8feaff0e38ba82fa2e6);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+
 .rating {
     display: flex;
     padding: 0;

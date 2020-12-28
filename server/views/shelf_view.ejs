@@ -47,7 +47,7 @@
            <a href="#" > <h3 class="card-title"><%=books[i].title%></h3> </a>
             <h5 class="card-title"><%=books[i].author_name%></h5>
             <!-- <p class="card-text"><%=books[i].description%></p> -->
-            <a href="#" class="btn btn-primary">View Book</a>
+            <a href="#" class="btn btn-primary view_book_from_shelf" id = <%=books[i].book_isbn_10%> >View Book</a>
             <a href="#" class="btn btn-danger button_book_del_frm_shelf" style="float: right" id = <%=books[i].book_isbn_10%>> Delete</a>
           </div>
           <div class="card-footer">
