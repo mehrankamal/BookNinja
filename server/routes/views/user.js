@@ -40,8 +40,8 @@ router.get("/:user_id/get_book/:book_id", require_auth, async (req, res) => {
         if(user_own_reviews.rowCount === 0){
             can_review = true;
         }
-
-        res.render('book_view', {details: book_details.rows[0], reviews: book_reviews.rows, can_review});
+        console.log({details: book_details.rows[0], reviews: book_reviews.rows, can_review,user_id});
+        res.render('book_view', {details: book_details.rows[0], reviews: book_reviews.rows, can_review,user_id});
     } catch (err) {
         console.log("Error: ", err.message);
         res.json({err: err.message});

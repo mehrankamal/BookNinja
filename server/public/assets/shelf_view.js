@@ -109,20 +109,22 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log(user_id.innerHTML);
             var xhr = new XMLHttpRequest();
 
-            xhr.open('GET', `${server}user/${parseInt(user_id.innerHTML)}/get_book/${book_id}`, true);
-            xhr.setRequestHeader("Content-Type", "application/json");
+            // xhr.open('GET', `${server}user/${parseInt(user_id.innerHTML)}/get_book/${book_id}`, true);
+            // xhr.setRequestHeader("Content-Type", "application/json");
 
-             xhr.onload = function () {
-                 if (this.status == 200) {
+            window.location = `${server}user/${parseInt(user_id.innerHTML)}/get_book/${book_id}`;
 
-
-            //         window.location = `${server}user/${user_id.innerHTML}`;
-                 }
-             }
-            // // console.log(new_bio.value);
+            //  xhr.onload = function () {
+            //      if (this.status == 200) {
 
 
-             xhr.send();
+            // //         window.location = `${server}user/${user_id.innerHTML}`;
+            //      }
+            //  }
+            // // // console.log(new_bio.value);
+
+
+            //  xhr.send();
 
 
 
