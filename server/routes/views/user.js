@@ -5,6 +5,39 @@ const { require_auth } = require("../../middleware/jwtMiddleware");
 
 const router = express.Router();
 
+// @route POST user/:user_id/post_review/:book_id
+// @desc Post a book review
+// @access logged-in user
+
+/*
+*   Sample req.body
+
+{
+    "review_content": "A really nice book to have.",
+    "rating": 3
+}
+
+*/
+
+router.post('/:user_id/post_review/:book_id', async (req, res) => {
+    try {
+        const {user_id, book_id} = req.params;
+        const {review_content, rating} = req.body;
+
+        const new_review = await pool.query("INSERT INTO reviews(user_id, book_isbn_10, likes, review_content, rating)\
+                                             VALUES ($1, $2, 0, $3, $4)\
+                                             RETURNING *",
+                                             [user_id, book_id, review_content, rating]);
+        
+        console.log(new_review);
+        res.json({status: 'posted', rev: new_review.rows[0]});
+    } catch (err) {
+        console.log("Error: " + err);
+        res.json({status: 'error', err: err.message});
+    }
+});
+
+
 // @route GET user/:user_id/get_book/:book_id
 // @desc Send the book view page with comments
 // @access logged-in user
