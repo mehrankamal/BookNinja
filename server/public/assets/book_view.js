@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     var rat_result_avg_text = document.querySelector(".textFor_book_avg_rating_number_result");
     var button_submit_my_review = document.querySelector("#button_submit_my_review");
     var user_id = document.querySelector("#user_id");
+    var person_rating = document.querySelector(".person_rating");
     console.log(star_rating_op);
     console.log(star_rat_res.innerHTML);
 
@@ -64,6 +65,37 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     //if-else END
 
+    let comments = document.querySelectorAll(".comment-div");
+    comments.forEach((elem) => {
+        let rating_val = elem.querySelector('.rating-val');
+        let rating_img = elem.querySelector('.person_rating');
+
+        if (parseInt(rating_val.innerHTML) === 1) {
+            rating_img.innerHTML = "★ ☆ ☆ ☆ ☆";
+            //rat_result_avg_text.appendChild(document.createTextNode(" 1"));
+        }
+        else if (parseInt(rating_val.innerHTML) === 2) {
+            rating_img.innerHTML = "★ ★ ☆ ☆ ☆";
+            //rat_result_avg_text.appendChild(document.createTextNode(" 2"));
+        }
+        else if (parseInt(rating_val.innerHTML) === 3) {
+            rating_img.innerHTML = "★ ★ ★ ☆ ☆";
+            //rat_result_avg_text.appendChild(document.createTextNode(" 3"));
+        }
+        else if (parseInt(rating_val.innerHTML) === 4) {
+            rating_img.innerHTML = "★ ★ ★ ★ ☆";
+            //rat_result_avg_text.appendChild(document.createTextNode(" 4"));
+        }
+        else if (parseInt(rating_val.innerHTML) === 5) {
+            rating_img.innerHTML = "★ ★ ★ ★ ★";
+            //rat_result_avg_text.appendChild(document.createTextNode(" 5"));
+        }
+
+    });
+
+
+
+
     if (container) {
 
         button_submit_my_review.addEventListener("click", function (e) {
@@ -83,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 var obj_shelf = JSON.parse(this.responseText);
                 console.log(obj_shelf);
 
-                window.location = `${server}user/${parseInt(user_id.innerHTML)}`;
+                window.location = `${server}user/${parseInt(user_id.innerHTML)}/get_book/${book_id}`;
             }
              }
             console.log(my_rev_text.value);

@@ -115,11 +115,12 @@
     
             <!-- Reviews -->
             <% for(var i=0; i<reviews.length; i++) { %>
-            <div class="media mb-4" style="margin-top: 3rem;">
+            <div class="media mb-4 comment-div" style="margin-top: 3rem;">
+              <p class="rating-val sr-only"><%=reviews[i].rating%></p>
               <img class="d-flex mr-3 rounded-circle" style="height: 50px;
               width: 50px;" src="https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Robot-512.png" alt="">
               <div class="media-body">
-                <h5 class="mt-0" style="color: solid black; font-weight: 600;"><%=reviews[i].user_name%><span style="float: right;" class="reviewers_stars_rat">★ ★ ★ ★ ☆</span></h5>
+                <h5 class="mt-0" style="color: solid black; font-weight: 600;"><%=reviews[i].user_name%><span style="float: right;" class="reviewers_stars_rat"><h3 class="person_rating"></h3></span></h5>
                 <%=reviews[i].review_content%>
               </div>
             </div>
