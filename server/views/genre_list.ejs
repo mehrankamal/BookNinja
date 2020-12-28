@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>shelf_view</title>
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="/public/assets/book_view.css" type="text/css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark" style="width:102% ;padding-bottom: 2px; padding-right: 32px">
+        <a href="#" class="navbar-brand" style="padding-left: 3rem; font-size:medium ;">Book Ninja</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMenu" style="padding-right: 30px;">
+            <ul class="navbar-nav ml-auto" style="padding-left: 4rem; font-size:smaller;">
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id ="home_btn">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id = "profile_btn">Profile</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link" id = "logout_btn" >Log out</a>
+              </li>
+            </ul>
+        </div>
+
+    </nav>
+    <% if (length > 0) { %> 
+    <div class="heading_for_shelf_view_page">
+    <h1><span class="badge bg-dark" style="color: rgb(211, 218, 173);"><%= books[0].shelf_name %></span></h1>
+    </div>
+   <p class="sr-only" id="book_id"><%=book_id%></p>
+   <!-- <p class="sr-only" id="user_id"><%=user_id%></p> -->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <% for(var i=0; i < books.length; i++) { %>
+        <div class="col">
+        <div class="card trans_hover" style="width: 18rem;">
+          <img class="card-img-top" src="https://st2.depositphotos.com/1364916/6359/v/600/depositphotos_63590137-stock-illustration-blue-book-logo-vector.jpg" alt="Card image cap">
+          <div class="card-body">
+           <a href="#" > <h3 class="card-title"><%=books[i].title%></h3> </a>
+            <h5 class="card-title"><%=books[i].author_name%></h5>
+            <!-- <p class="card-text"><%=books[i].description%></p> -->
+            <a href="#" class="btn btn-primary">View Book</a>
+            <a href="#" class="btn btn-danger button_book_del_frm_shelf" style="float: right" id = <%=books[i].book_isbn_10%>> Delete</a>
+          </div>
+          <div class="card-footer">
+            
+          </div>
+      </div>
+     </div>
+     <% } %>
+
+     </div>
+     <% } else { %>
+        <div class="heading_for_shelf_view_page">
+            <h1><span class="badge bg-dark" style="color: rgb(211, 218, 173);">No Books in this genre</span></h1>
+            </div>
+    <% }%> 
+
+   
+      
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/public/assets/genre_list.js"> </script>
+</body>
+
+</html>
