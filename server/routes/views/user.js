@@ -116,8 +116,8 @@ router.get("/:user_id/shelf/:shelf_id", require_auth,async (req, res) => {
                                                 AND books.author_id = authors.author_id\
                                                 AND user_shelf.user_id = $2;",
                                         [shelf_id, user_id]);
-        console.log(books.rows);
-        res.render("shelf_view", {books: books.rows,shelf_id,user_id});
+        console.log(books.rows); 
+        res.render("shelf_view", {books: books.rows,shelf_id,user_id,length: books.rowCount});
     } catch (err) {
         console.log("Error: " + err.message);
         res.status(300).json({err: err.message});
