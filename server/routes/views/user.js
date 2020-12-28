@@ -5,6 +5,49 @@ const { require_auth } = require("../../middleware/jwtMiddleware");
 
 const router = express.Router();
 
+// @route GET user/:user_id/get_book/:book_id
+// @desc Send the book view page with comments
+// @access logged-in user
+
+router.get("/:user_id/get_book/:book_id", require_auth, async (req, res) => {
+    try{
+        const {user_id, book_id} = req.params;
+        const book_details = await pool.query("SELECT books.book_isbn_10 as book_id, books.title as title, books.description as description,\
+                                                    books.pub_date as pub_date, books.genre as genre, authors.author_name as author_name,\
+                                                    ROUND(AVG(reviews.rating)) as avg_rating\
+                                               FROM books, authors, reviews\
+                                               WHERE books.author_id = authors.author_id\
+                                                    AND books.book_isbn_10 = reviews.book_isbn_10\
+                                                    AND books.book_isbn_10 = $1\
+                                               GROUP BY book_id, author_name\
+                                               LIMIT 1",
+                                               [book_id]);
+        const book_reviews = await pool.query("SELECT users.user_name as user_name, reviews.likes as likes, reviews.review_content as review_content,\
+                                                    reviews.post_date as post_date, ROUND(rating) as rating\
+                                               FROM reviews, users\
+                                               WHERE book_isbn_10 = $1\
+                                                    AND reviews.user_id = users.user_id\
+                                               ORDER BY post_date DESC",
+                                               [book_id]);
+
+        const user_own_reviews = await pool.query("SELECT user_id, book_isbn_10\
+                                             FROM reviews\
+                                             WHERE book_isbn_10 = $1\
+                                                    AND user_id = $2",
+                                             [book_id, user_id]);
+
+        let can_review = false;
+        if(user_own_reviews.rowCount === 0){
+            can_review = true;
+        }
+
+        res.render('book_view', {details: book_details.rows[0], reviews: book_reviews.rows, can_review});
+    } catch (err) {
+        console.log("Error: ", err.message);
+        res.json({err: err.message});
+    }
+});
+
 // @route GET user/:user_id/
 // @desc Send the user profile view
 // @access logged-in user
