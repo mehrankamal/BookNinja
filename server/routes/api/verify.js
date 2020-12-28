@@ -24,8 +24,10 @@ router.get('/:id/:email', (req, res) => {
             from: keys.GMAIL_USER,
             to: email,
             subject: "BookNinja Confirmation Mail",
-            html: `Please click on the following url to confirm: <a href='${verify_url}'> ${verify_url} </a>`,
-            text: `Please copy-paste the given url to confirm: ${verify_url}`,
+            html: `Please click on the following url to confirm:\
+                    <a href='${verify_url}'>${verify_url}</a>`,
+            text: `Please copy-paste the given url to confirm:\
+                    ${verify_url}`,
         };
 
         transporter.sendMail(mailOptions, function (err, info) {

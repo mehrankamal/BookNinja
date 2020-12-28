@@ -5,6 +5,25 @@ const { require_auth } = require("../../middleware/jwtMiddleware");
 
 const router = express.Router();
 
+// @route GET user/:user_id/genre/:genre
+// @desc Get all the books belonging to a genre
+// @access logged-in user
+
+router.get('/:user_id/genre/:genre', async (req, res) => {
+    try {
+        const {user_id, genre} = req.params;
+        const books = await pool.query("SELECT *\
+                                  FROM books\
+                                  WHERE genre = $1",
+                                  [genre.trim()]);
+
+        res.json({books: books.rows});
+    } catch (err) {
+        console.log("Error: " + err);
+        res.json({err});
+    }
+});
+
 // @route POST user/:user_id/post_review/:book_id
 // @desc Post a book review
 // @access logged-in user
