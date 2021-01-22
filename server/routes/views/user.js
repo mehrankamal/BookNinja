@@ -14,15 +14,16 @@ router.get('/:user_id/genre/:genre', async (req, res) => {
         const {user_id, genre} = req.params;
         const books = await pool.query("SELECT *\
                                   FROM books\
-                                  WHERE genre = $1",
-                                  [genre.trim()]);
+                                  WHERE lower(genre) = $1",
+                                  [genre.toLowerCase()]);
 
-        res.json({books: books.rows});
+        res.render("genre_books", {books: books.rows, user_id});
     } catch (err) {
         console.log("Error: " + err);
         res.json({err});
     }
 });
+
 
 // @route POST user/:user_id/post_review/:book_id
 // @desc Post a book review
@@ -159,6 +160,7 @@ router.get("/:user_id/shelf/:shelf_id", require_auth,async (req, res) => {
         const {user_id, shelf_id} = req.params;
         console.log(shelf_id);
         console.log(user_id);
+
         const books = await pool.query("SELECT user_shelf.shelf_name, books.book_isbn_10, books.title,\
                                          books.description, books.pub_date, books.genre, authors.author_name\
                                         FROM user_shelf, shelf_books, books, authors\
@@ -168,8 +170,14 @@ router.get("/:user_id/shelf/:shelf_id", require_auth,async (req, res) => {
                                                 AND books.author_id = authors.author_id\
                                                 AND user_shelf.user_id = $2;",
                                         [shelf_id, user_id]);
+        const book_list = await pool.query("SELECT  books.book_isbn_10, books.title,\
+                                        books.description, books.pub_date, books.genre\
+                                        FROM books;"
+                                        );           
+        // console.log(book_list.rows);                                                     
         console.log(books.rows); 
-        res.render("shelf_view", {books: books.rows,shelf_id,user_id,length: books.rowCount});
+    
+        res.render("shelf_view", {book_list: book_list.rows,books: books.rows,shelf_id,user_id,length: books.rowCount});
     } catch (err) {
         console.log("Error: " + err.message);
         res.status(300).json({err: err.message});

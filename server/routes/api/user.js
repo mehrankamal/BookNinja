@@ -100,6 +100,23 @@ router.delete("/:user_id/delete_book/:shelf_id/:book_id", require_auth, async (r
     }
 });
 
+
+
+router.post("/:user_id/add_book/:shelf_id/:book_id", require_auth, async (req, res) => {
+    try {
+        const {user_id, shelf_id, book_id} = req.params;
+        const addedbook = await pool.query("INSERT INTO shelf_books(shelf_id,book_isbn_10)\
+                                              values($1,$2)",
+                                              [parseInt(shelf_id), book_id]);
+        res.status(200);
+        console.log("added");
+
+    } catch (err) {
+        console.log("Error "+ err.message);
+        res.json({err});
+    }
+});
+
 // @route   DELETE api/user/:user_id/delete_shelf/:shelf_id
 // @desc    Delete a shelf related to a user
 // @access  private (user can delete only it's related shelves)

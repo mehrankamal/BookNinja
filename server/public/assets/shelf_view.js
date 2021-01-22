@@ -4,11 +4,66 @@ document.addEventListener("DOMContentLoaded", () => {
     var button_book_del_shelf = document.querySelectorAll(".button_book_del_frm_shelf");
     let shelf_id = document.querySelector("#shelf_id"); //for sendind requests to server
     let user_id = document.querySelector("#user_id"); //for sendind requests to server
+    const searchInput = document.querySelector(".search-input");
+    const inputText = document.querySelector("#inputText");
+    const allBooks = document.querySelectorAll(".all-books")
 
+
+    allBooks.forEach((book) => {
+        //This is for selecting book and requesting backend to add book to shelf 
+        book.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            let book_isbn_10 = e.target.id;
+
+            console.log(book_isbn_10);
+            console.log(shelf_id.innerHTML);
+            console.log(user_id.innerHTML);
+
+            //  window.location = `${server}user/${parseInt(user_id.innerHTML)}/shelf/${parseInt(shelf_id)}`;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', `${server}api/user/${parseInt(user_id.innerHTML)}/add_book/${parseInt(shelf_id.innerHTML)}/${book_isbn_10}`, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onload = function () {
+                if (this.status === 200) {
+                    window.location = `${server}user/${parseInt(user_id.innerHTML)}/shelf/${parseInt(shelf_id.innerHTML)}`;
+
+                }
+            }
+
+            // // //          var data = JSON.stringify({ "shelf_name": shelf_name.value });
+
+            xhr.send();
+        })
+
+    });    
+
+
+    inputText.addEventListener('keyup', (e) => {
+
+
+        userInput = e.target.value.toLowerCase();
+        if (userInput) {
+            searchInput.classList.add("active");
+            allBooks.forEach((book) => {
+                const bookName = book.innerHTML.toLowerCase();
+                if (bookName.indexOf(userInput) != -1) {
+                    book.style.display = 'block';
+                }
+                else {
+                    book.style.display = 'none';
+                }
+            });
+        }
+        else {
+            searchInput.classList.remove("active");
+        }
+
+    });
 
     button_book_del_shelf.forEach(function (any) {
-
-
         any.addEventListener("click", function (e) {
 
 

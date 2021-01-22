@@ -1,3 +1,4 @@
+
 const server = 'http://localhost:3000/';
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -93,6 +94,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
+
+    var genre_button = document.querySelector("#go_to_genre");
+
+    genre_button.addEventListener("click",function (e)
+    {   
+       
+
+        window.location = `${server}user/${parseInt(user_id.innerHTML)}/genre/${this.innerHTML}`;
+    }
+    );
 
 
 

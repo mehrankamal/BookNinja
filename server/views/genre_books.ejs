@@ -33,42 +33,26 @@
         </div>
 
     </nav>
-    <p class="sr-only" id="shelf_id"><%=shelf_id%></p>
-   <p class="sr-only" id="user_id"><%=user_id%></p>
-   <div class="wrapper">
-    <div class="search-input">
-        <a href="" target="_blank" hidden></a>
-        <input type="text" id="inputText" placeholder="Search And Select Book To Add">
-        <div class="autocom-box ">
-        <!-- here list are inserted from javascript -->
-        <% for(var i=0; i < book_list.length ; i++) { %>
-                <li id = <%=book_list[i].book_isbn_10%> class="all-books"><%=book_list[i].title%></li>
-        <% } %>
-            
-        </div>
-        <div class="icon"><i class="fas fa-search"></i></div>
-    </div>
-    </div>
-    <% if (length > 0) { %> 
+
+    <p class='sr-only' id='user_id'><%=user_id%></p>
+
+    <% if (books.length > 0) { %> 
     <div class="heading_for_shelf_view_page">
-    <h1><span class="badge bg-dark" style="color: rgb(211, 218, 173);"><%= books[0].shelf_name %></span></h1>
+    <h1><span class="badge bg-dark" style="color: rgb(211, 218, 173);"><%= books[0].genre %></span></h1>
     </div>
    
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <% for(var i=0; i< books.length; i++) { %>
-
-        
-
 
         <div class="col">
         <div class="card trans_hover" style="width: 18rem;">
           <img class="card-img-top" src="https://st2.depositphotos.com/1364916/6359/v/600/depositphotos_63590137-stock-illustration-blue-book-logo-vector.jpg" alt="Card image cap">
           <div class="card-body">
            <a href="#" > <h3 class="card-title"><%=books[i].title%></h3> </a>
-            <h5 class="card-title"><%=books[i].author_name%></h5>
-            <!-- <p class="card-text"><%=books[i].description%></p> -->
+            <!-- <h5 class="card-title"><%=books[i].author_name%></h5> -->
+            <p class="card-text"><%=books[i].description%></p>
             <a href="#" class="btn btn-primary view_book_from_shelf" id = <%=books[i].book_isbn_10%> >View Book</a>
-            <a href="#" class="btn btn-danger button_book_del_frm_shelf" style="float: right" id = <%=books[i].book_isbn_10%>> Delete</a>
+            <!-- <a href="#" class="btn btn-danger button_book_del_frm_shelf" style="float: right" id = <%=books[i].book_isbn_10%>> Delete</a> -->
           </div>
           <div class="card-footer">
             <small class="text-muted">★ ★ ★ ★ ☆</small>
@@ -80,7 +64,7 @@
      </div>
      <% } else { %>
         <div class="heading_for_shelf_view_page">
-            <h1><span class="badge bg-dark" style="color: rgb(211, 218, 173);">No Books Added in this shelf</span></h1>
+            <h1><span class="badge bg-dark" style="color: rgb(211, 218, 173);">No Books in this genre</span></h1>
             </div>
         
     <% }%> 
@@ -93,7 +77,7 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/public/assets/shelf_view.js"> </script>
+    <script type="text/javascript" src="/public/assets/genre_books.js"> </script>
 </body>
 
 </html>
